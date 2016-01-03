@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/call_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/call_button"
+        android:onClick="callNow"
+        android:text="@string/call_now"
+        android:textColor="#fff"
+        android:layout_below="@+id/number"
+        android:layout_alignLeft="@+id/number"
+        android:layout_alignStart="@+id/number"
+        android:layout_marginTop="44dp" />
+
+    <Button
+        android:id="@+id/hangup_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/hangup_button"
+        android:enabled="false"
+        android:onClick="hangupNow"
+        android:text="@string/hangup_now"
+        android:textColor="#fff"
+        android:layout_alignBottom="@+id/call_btn"
+        android:layout_alignRight="@+id/number"
+        android:layout_alignEnd="@+id/number"
+        android:layout_alignTop="@+id/call_btn" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="46dp"
+        android:layout_toRightOf="@+id/call_btn"/>
+        <!--android:src="@drawable/plivo_logo" -->
+    <TextView
+        android:id="@+id/plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:textSize="25sp"
+        android:gravity="right"
+        android:layout_toLeftOf="@+id/number"
+        android:layout_alignBottom="@+id/number"
+        android:layout_alignTop="@+id/number"
+        android:layout_alignParentLeft="true" />
+    <EditText
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Type a number to call..."
+        android:inputType="phone" />
+
+</RelativeLayout>
+
