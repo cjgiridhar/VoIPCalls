@@ -29,15 +29,16 @@ public class MainActivity extends Activity implements EventListener {
 
     public final static String EXTRA_MESSAGE = "com.plivo.example.MESSAGE";
     // Edit the variables below with your Plivo endpoint username and password
-    public final static String PLIVO_USERNAME = "";
-    public final static String PLIVO_PASSWORD = "";
+    public final static String PLIVO_USERNAME = "mobile160103034448";
+    public final static String PLIVO_PASSWORD = "mobile";
 
     // Edit the PHONE_NUMBER with the number you want to make the call to
-    public static String PHONE_NUMBER = "";
+    public static String PHONE_NUMBER = "chetan151026050542";
     private EditText number;
     private AudioManager myAudioManager;
     Endpoint endpoint = Endpoint.newInstance(true, this);
     Outgoing outgoing = new Outgoing(endpoint);
+    private Incoming incoming;
 
     // private final Context context;
     @Override
@@ -115,12 +116,13 @@ public class MainActivity extends Activity implements EventListener {
         Button hangup_button = ((Button) findViewById(R.id.hangup_btn));
         Button call_button = ((Button) findViewById(R.id.call_btn));
         hangup_button.setEnabled(false);
-
         hangup_button.setClickable(false);
 
         call_button.setEnabled(true);
         call_button.setClickable(true);
     }
+
+
 
     public void speakerOn(View view) {
         Log.v("PlivoOutbound", "Speaker on...");
@@ -151,12 +153,57 @@ public class MainActivity extends Activity implements EventListener {
      * @param incoming
      *            new Incoming call object.
      */
-    public void onIncomingCall(Incoming incoming) {
 
+    public void disconnectNow(View view) {
+        Log.v("PlivoInbound", "Hanging up...");
+        incoming.hangup();
+        Button hangup_button = ((Button)findViewById(R.id.disconnect_btn));
+        Button answer_button = ((Button)findViewById(R.id.answer_btn));
+        hangup_button.setEnabled(false);
+        hangup_button.setClickable(false);
+
+        answer_button.setEnabled(false);
+        answer_button.setClickable(false);
+    }
+
+    public void answerNow(View view) {
+        Log.v("PlivoInbound", "Answering");
+        incoming.answer();
+        Button hangup_button = ((Button)findViewById(R.id.disconnect_btn));
+        Button answer_button = ((Button)findViewById(R.id.answer_btn));
+        hangup_button.setEnabled(false);
+        hangup_button.setClickable(false);
+
+        answer_button.setEnabled(false);
+        answer_button.setClickable(false);
+    }
+
+
+    public void onIncomingCall(Incoming incoming) {
+        this.incoming = incoming;
+
+        Log.v("PlivoInbound", "Inbound Call...");
+
+        runOnUiThread(new Runnable() {
+            public void run() {
+                Button hangup_button = ((Button)findViewById(R.id.disconnect_btn));
+                Button answer_button = ((Button)findViewById(R.id.answer_btn));
+                hangup_button.setEnabled(true);
+                hangup_button.setClickable(true);
+                answer_button.setEnabled(true);
+                answer_button.setClickable(true);
+            }
+        });
     }
 
     public void onIncomingCallHangup(Incoming incoming) {
-
+        Log.v("PlivoInbound", "Call hanging up");
+        Button hangup_button = ((Button)findViewById(R.id.disconnect_btn));
+        Button answer_button = ((Button)findViewById(R.id.answer_btn));
+        hangup_button.setEnabled(false);
+        hangup_button.setClickable(false);
+        answer_button.setEnabled(false);
+        answer_button.setClickable(false);
     }
 
     public void onIncomingCallRejected(Incoming incoming) {
@@ -176,7 +223,7 @@ public class MainActivity extends Activity implements EventListener {
         hangup_button.setClickable(true);
         call_button.setEnabled(false);
         call_button.setClickable(false);
-        call_button.setBackgroundColor(Color.parseColor("#dddddd"));
+        //call_button.setBackgroundColor(Color.parseColor("#dddddd"));
         Toast.makeText(getApplicationContext(), "Clicked Call",
                 Toast.LENGTH_LONG).show();
     }

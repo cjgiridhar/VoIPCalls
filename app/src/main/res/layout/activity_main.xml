@@ -16,10 +16,10 @@
         android:onClick="callNow"
         android:text="@string/call_now"
         android:textColor="#fff"
-        android:layout_below="@+id/number"
-        android:layout_alignLeft="@+id/number"
-        android:layout_alignStart="@+id/number"
-        android:layout_marginTop="44dp" />
+        android:layout_below="@+id/plus"
+        android:layout_alignRight="@+id/answer_btn"
+        android:layout_alignEnd="@+id/answer_btn"
+        android:layout_marginTop="39dp" />
 
     <Button
         android:id="@+id/hangup_btn"
@@ -30,10 +30,10 @@
         android:onClick="hangupNow"
         android:text="@string/hangup_now"
         android:textColor="#fff"
-        android:layout_alignBottom="@+id/call_btn"
+        android:layout_above="@+id/textView2"
+        android:layout_marginTop="39dp"
         android:layout_alignRight="@+id/number"
-        android:layout_alignEnd="@+id/number"
-        android:layout_alignTop="@+id/call_btn" />
+        android:layout_alignEnd="@+id/number" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -58,11 +58,61 @@
         android:id="@+id/number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1"
-        android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="Type a number to call..."
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
+
+
+    <Button
+        android:id="@+id/answer_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/answer_button"
+        android:onClick="answerNow"
+        android:enabled="false"
+        android:text="@string/answer_now"
+        android:textColor="#fff"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/number"
+        android:layout_alignStart="@+id/number" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Make Calls..."
+        android:id="@+id/textView"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/disconnect_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/disconnect_button"
+        android:enabled="false"
+        android:onClick="disconnectNow"
+        android:text="@string/disconnect_now"
+        android:textColor="#fff"
+        android:layout_alignTop="@+id/answer_btn"
+        android:layout_alignRight="@+id/number"
+        android:layout_alignEnd="@+id/number" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Receive Calls..."
+        android:id="@+id/textView2"
+        android:layout_marginTop="110dp"
+        android:layout_below="@+id/call_btn"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
 
